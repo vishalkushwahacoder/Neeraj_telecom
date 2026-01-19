@@ -209,3 +209,34 @@ setInterval(() => {
   setActiveSlide(0);
   startAuto();
 })();
+<script>
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let message = input.value.trim();
+  if (message === "") return;
+
+  let chatBox = document.getElementById("chatBox");
+
+  chatBox.innerHTML += `<div class="message user">${message}</div>`;
+
+  let reply = getAIReply(message.toLowerCase());
+
+  setTimeout(() => {
+    chatBox.innerHTML += `<div class="message bot">${reply}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+
+  input.value = "";
+}
+
+function getAIReply(text) {
+  if (text.includes("repair")) return "We provide mobile repair for all brands 📱";
+  if (text.includes("accessories")) return "We sell covers, chargers, earphones & more!";
+  if (text.includes("price")) return "Prices depend on the model. Please visit our shop.";
+  if (text.includes("location")) return "Neeraj Telecom is near the main market.";
+  if (text.includes("open")) return "We are open 10 AM to 9 PM, Monday to Saturday.";
+  return "Hello! How can I help you with your phone today? 😊";
+}
+</script>
+
+
